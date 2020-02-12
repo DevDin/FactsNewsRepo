@@ -1,18 +1,28 @@
 package com.devdin.factsnews.utils
 
+import android.content.Context
 import com.devdin.factsnews.datamodel.FNFactResponse
-import com.devdin.factsnews.datamodel.FNFactResponseRow
+import com.google.gson.Gson
+import java.io.IOException
 
 class TestDataProvider {
     companion object Data {
-        fun getData(count: Int): List<FNFactResponseRow> {
-            var item = FNFactResponseRow()
-            item.title = "title1"
-            item.description = "description1"
-            item.imageHref =
-                "http://caroldeckerwildlifeartstudio.net/wp-content/uploads/2011/04/IMG_2418%20majestic%20moose%201%20copy%20(Small)-96x96.jpg"
-            var list = arrayListOf<FNFactResponseRow>(item)
-            return list;
+        fun getData(context: Context): FNFactResponse {
+            lateinit var jsonString: String
+            try {
+                jsonString =
+                    context.assets.open("facts.json").bufferedReader().use { it.readText() }
+            } catch (ioException: IOException) {
+                ioException.printStackTrace()
+            }
+
+            lateinit var response: FNFactResponse
+            if (jsonString != null) {
+                response = Gson().fromJson(jsonString, FNFactResponse::class.java)
+            }
+
+
+            return response
         }
     }
 }
