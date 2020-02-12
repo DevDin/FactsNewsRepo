@@ -5,11 +5,11 @@ import android.os.Handler
 
 
 class FNSplashActivity : FNBaseActivity() {
-    private val SPLASH_TIME_OUT = 5000L
+      val SPLASH_TIME_OUT = 3000L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.devdin.factsnews.R.layout.activity_splash)
-        Handler().postDelayed(Runnable() {
+        Handler().postDelayed({//SAM
             goToNextScreenClearBackStack(FNHomeActivity::class.java)
         }, SPLASH_TIME_OUT)
     }

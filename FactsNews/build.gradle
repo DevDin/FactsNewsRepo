@@ -7,6 +7,8 @@ buildscript {
     ext.gson = "2.8.1"
     ext.glide = "4.8.0"
     ext.dagger = "2.15"
+    ext.okHttp = "3.8.1"
+    ext.retrofit = "2.4.0"
     repositories {
         google()
         jcenter()
