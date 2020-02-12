@@ -1,0 +1,2 @@
+# FactsNewsRepo
+Android Proficiency example
