@@ -2,6 +2,8 @@ package com.devdin.factsnews.ui.activity
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.Window
+import android.view.WindowManager
 
 
 class FNSplashActivity : FNBaseActivity() {
