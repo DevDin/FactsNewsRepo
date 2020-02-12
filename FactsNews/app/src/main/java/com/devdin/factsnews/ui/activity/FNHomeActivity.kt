@@ -1,6 +1,7 @@
 package com.devdin.factsnews.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devdin.factsnews.R
@@ -11,7 +12,6 @@ import com.devdin.factsnews.ui.adapter.FNRecyclerAdapter
 import com.devdin.factsnews.utils.Constants
 import com.devdin.factsnews.utils.TestDataProvider
 import kotlinx.android.synthetic.main.activity_home.*
-
 
 class FNHomeActivity : FNBaseActivity(), FNRestCallback<FNFactResponse> {
     private lateinit var response: FNFactResponse
@@ -26,16 +26,19 @@ class FNHomeActivity : FNBaseActivity(), FNRestCallback<FNFactResponse> {
             pullToRefresh.isRefreshing = true
             getData()
         }
+        progressBar.visibility = View.VISIBLE
         getData()
     }
 
     override fun onSuccess(response: FNFactResponse?) {
+        progressBar.visibility = View.GONE
         pullToRefresh.isRefreshing = false
         refreshList()
 
     }
 
     override fun onFailure() {
+        progressBar.visibility = View.GONE
         pullToRefresh.isRefreshing = false
         Toast.makeText(this, "API call failed", Toast.LENGTH_LONG).show()
     }
@@ -45,6 +48,7 @@ class FNHomeActivity : FNBaseActivity(), FNRestCallback<FNFactResponse> {
             response = TestDataProvider.getData(this)
             pullToRefresh.isRefreshing = false
             refreshList()
+            progressBar.visibility = View.GONE
         } else {
             FNRestClient.getFacts(this)
         }

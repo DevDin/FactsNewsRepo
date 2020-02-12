@@ -1,10 +1,22 @@
 package com.devdin.factsnews.datamodel
 
+import com.google.gson.annotations.SerializedName
+
 /* data classes don't require any functions*/
-data class FNFactResponse(var title: String?, var rows: List<FNFactResponseRow>)
+data class FNFactResponse(
+    @SerializedName("title")
+    var title: String="",
+    @SerializedName("rows")
+    var rows: List<FNFactResponseRow> = listOf()
+)
 
 data class FNFactResponseRow(
-    var title: String? = null, var description: String? = null, var imageHref: String? = null
+    @SerializedName( "title")
+    var title: String = "",
+    @SerializedName("description")
+    var description: String? = "",
+    @SerializedName("imageHref")
+    var imageHref: String = ""
 
 
 )
