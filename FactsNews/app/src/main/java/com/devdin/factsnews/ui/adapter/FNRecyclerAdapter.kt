@@ -36,15 +36,10 @@ class FNRecyclerAdapter(response: List<FNFactResponseRow>, context: Context) :
         val currentItem = newsList[position]
         holder.title.text = currentItem?.title
         holder.description.text = currentItem?.description
-        if (currentItem.imageHref != null) {
-            holder.imgView.visibility = View.VISIBLE
             Glide.with(context!!).load(currentItem.imageHref?.replace("http", "https")).apply(
                 RequestOptions().diskCacheStrategy(
                     DiskCacheStrategy.ALL
                 )).into(holder.imgView)
-        } else {
-            holder.imgView.visibility = View.GONE
-        }
     }
 
     /**
